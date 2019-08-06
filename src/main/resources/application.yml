@@ -1,0 +1,41 @@
+#
+#spring:
+#  profiles: local
+#  datasource:
+#    sql-script-encoding: UTF-8
+##    initialization-mode: always
+#    url: jdbc:h2:~/test
+#    driver-class-name: org.h2.Driver
+#    data-username: sa
+#    data-password:
+#  h2:
+#    console:
+#      enabled: true
+#      path: /console
+#  jpa:
+#    show-sql: false
+#    hibernate:
+#      ddl-auto: none
+#    properties:
+#      hibernate:
+#        format-sql: false
+#    open-in-view: false
+#  devtools:
+#    restart:
+#      enabled: true
+
+spring:
+  h2:
+    console:
+      enabled: true
+      path: /console
+
+  datasource:
+    url: jdbc:h2:~/test
+    driver-class-name: org.h2.Driver
+    data-username: sa
+    data-password:
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    database: H2
