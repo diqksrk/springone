@@ -1,5 +1,6 @@
 package com.example.kang.service;
 
+import com.example.kang.entity.Board;
 import com.example.kang.entity.Comment;
 import com.example.kang.exception.BusinessException;
 import com.example.kang.exception.ErrorCode;
@@ -19,13 +20,16 @@ public class CommentService {
     private final CommentRepository commentRepository;
 
     public List<Comment> selectCommentList() {
+        Comment comment = new Comment();
+        Board board = new Board();
+        comment.setBoard(board);
 
         List<Comment> commentList=commentRepository.findAll();
-        for (Comment c : commentList){
-            log.info("=========================================");
-            log.info(c.toString()+" "+c.getBoard().toString());
-            log.info("=========================================");
-        }
+//        for (Comment c : commentList){
+//            log.info("=========================================");
+//            log.info(c.toString()+" "+c.getBoard().toString());
+//            log.info("=========================================");
+//        }
 
         return commentRepository.findAll();
     }
