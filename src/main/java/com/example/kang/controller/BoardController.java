@@ -3,7 +3,9 @@ package com.example.kang.controller;
 import com.example.kang.dto.RequireCreateBoard;
 import com.example.kang.dto.RequireUpdateBoard;
 import com.example.kang.entity.Board;
+import com.example.kang.entity.Comment;
 import com.example.kang.service.BoardService;
+import com.example.kang.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +20,17 @@ public class BoardController {
 
     private final BoardService boardService;
 
+    private final CommentService commentService;
+
     @GetMapping("/board")
     public ResponseEntity<List<Board>> getBoardList() {
         List<Board> boards = boardService.selectBoardList();
+        return ResponseEntity.status(HttpStatus.OK).body(boards);
+    }
+
+    @GetMapping("/comment")
+    public ResponseEntity<List<Comment>> getCommentList() {
+        List<Comment> boards = commentService.selectCommentList();
         return ResponseEntity.status(HttpStatus.OK).body(boards);
     }
 
