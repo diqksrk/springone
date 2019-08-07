@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 public class RequireUpdateComment {
 
     @NotNull
-    @Size(min=1, max=50)
+    @Size(min = 1, max = 50)
     private String content;
 
     @NotNull

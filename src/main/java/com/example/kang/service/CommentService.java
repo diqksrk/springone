@@ -1,6 +1,5 @@
 package com.example.kang.service;
 
-import com.example.kang.entity.Board;
 import com.example.kang.entity.Comment;
 import com.example.kang.exception.BusinessException;
 import com.example.kang.exception.ErrorCode;
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.CompletionException;
 
 @Service
 @RequiredArgsConstructor
@@ -30,9 +28,6 @@ public class CommentService {
     }
 
     public Comment insertComment(Comment comment) {
-
-//        log.info(comment.getContent().toString());
-//        log.info(comment.getBoard().getId());
         return commentRepository.save(comment);
     }
 

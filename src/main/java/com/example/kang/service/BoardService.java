@@ -21,15 +21,9 @@ import java.util.Optional;
 public class BoardService { //프로젝트 난이도가 커지면 임플리먼트 사용. 크지 않으면 쓸 필요가?
 
     private final BoardRepository boardRepository;
-    private final CommentService commentService;
 
     @Transactional
     public Board getBoard(Long id) {
-//        Comment comment = commentService.getComment(1L);
-//        List<Comment> commentList = new ArrayList<>();
-//        commentList.add(comment);
-//        board.setCommentList(commentList);
-
         return boardRepository.findById(id)
                 .orElseThrow(() -> new BusinessException(ErrorCode.BOARD_NOT_EXIST));
     }
