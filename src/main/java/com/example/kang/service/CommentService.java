@@ -36,13 +36,13 @@ public class CommentService {
     }
 
     public Comment updateComment(Comment comment) {
-        Optional<Comment> c = commentRepository.findById(comment.getId());
-        log.info(c.get().getContent());
-        return c.map(
+        Optional<Comment> comment1 = commentRepository.findById(comment.getId());
+        return comment1.map(
                 x -> {
                     x.setContent(comment.getContent());
                     return commentRepository.save(x);
                 }
         ).orElseThrow(() -> new BusinessException(ErrorCode.BOARD_NOT_EXIST));
     }
+
 }

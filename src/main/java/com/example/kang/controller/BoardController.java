@@ -44,7 +44,8 @@ public class BoardController {
 
     @PutMapping("/board")
     public ResponseEntity<Board> updateBoard(@Valid @RequestBody RequireUpdateBoard requireUpdateBoard) {
-        Board board = Board.builder().id(requireUpdateBoard.getId()).title(requireUpdateBoard.getTitle()).content(requireUpdateBoard.getContent()).build();
+        Board board = Board.builder().id(requireUpdateBoard.getId()).title(requireUpdateBoard.
+                getTitle()).content(requireUpdateBoard.getContent()).build();
         return ResponseEntity.status(HttpStatus.OK).body(boardService.updateBoard(board));
     }
 

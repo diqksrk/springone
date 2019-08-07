@@ -41,8 +41,8 @@ public class BoardService { //프로젝트 난이도가 커지면 임플리먼�
     }
 
     public Board updateBoard(Board board) {
-        Optional<Board> b = boardRepository.findById(board.getId());
-        return b.map(
+        Optional<Board> board1 = boardRepository.findById(board.getId());
+        return board1.map(
                 x -> {
                     x.setTitle(board.getTitle());
                     x.setContent(board.getContent());
