@@ -15,24 +15,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Service //프로젝트 난이도가 커지면 임플리먼트 사용. 크지 않으면 쓸 필요가?
+@Service
 @RequiredArgsConstructor
 @Log4j2
-public class BoardService {
+public class BoardService { //프로젝트 난이도가 커지면 임플리먼트 사용. 크지 않으면 쓸 필요가?
 
     private final BoardRepository boardRepository;
     private final CommentService commentService;
 
     @Transactional
     public Board getBoard(Long id) {
-        Board board = boardRepository.findById(id)
-                .orElseThrow(() -> new BusinessException(ErrorCode.BOARD_NOT_EXIST));
 //        Comment comment = commentService.getComment(1L);
 //        List<Comment> commentList = new ArrayList<>();
 //        commentList.add(comment);
-//
 //        board.setCommentList(commentList);
-        return board;
+
+        return boardRepository.findById(id)
+                .orElseThrow(() -> new BusinessException(ErrorCode.BOARD_NOT_EXIST));
     }
 
     public List<Board> selectBoardList() {

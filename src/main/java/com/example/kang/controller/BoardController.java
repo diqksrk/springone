@@ -28,12 +28,6 @@ public class BoardController {
         return ResponseEntity.status(HttpStatus.OK).body(boards);
     }
 
-    @GetMapping("/comment")
-    public ResponseEntity<List<Comment>> getCommentList() {
-        List<Comment> boards = commentService.selectCommentList();
-        return ResponseEntity.status(HttpStatus.OK).body(boards);
-    }
-
     @GetMapping("/board/{id}")
     public ResponseEntity<Board> getBoard(@PathVariable long id) {
         return ResponseEntity.status(HttpStatus.OK).body(boardService.getBoard(id));
@@ -46,14 +40,14 @@ public class BoardController {
     }
 
     @PostMapping("/board")
-    public ResponseEntity<Board> createBoard(@Valid @RequestBody final RequireCreateBoard requiredBoard) {
+    public ResponseEntity<Board> createBoard(@Valid @RequestBody RequireCreateBoard requiredBoard) {
         Board board = Board.builder().title(requiredBoard.getTitle()).content(requiredBoard.getContent()).build();
         return ResponseEntity.status(HttpStatus.OK).body(boardService.insertBoard(board));
     }
 
     @PutMapping("/board")
-    public ResponseEntity<Board> updateBoard(@Valid @RequestBody final RequireUpdateBoard requireUpdateBoard) {
-        Board board = Board.builder().title(requireUpdateBoard.getTitle()).content(requireUpdateBoard.getContent()).build();
+    public ResponseEntity<Board> updateBoard(@Valid @RequestBody RequireUpdateBoard requireUpdateBoard) {
+        Board board = Board.builder().id(requireUpdateBoard.getId()).title(requireUpdateBoard.getTitle()).content(requireUpdateBoard.getContent()).build();
         return ResponseEntity.status(HttpStatus.OK).body(boardService.updateBoard(board));
     }
 

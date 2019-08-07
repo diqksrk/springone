@@ -10,6 +10,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.CompletionException;
 
 @Service
@@ -20,23 +21,33 @@ public class CommentService {
     private final CommentRepository commentRepository;
 
     public List<Comment> selectCommentList() {
-//        Comment comment = new Comment();
-//        Board board = new Board();
-//        comment.setBoard(board);
-
-//        List<Comment> commentList=commentRepository.findAll();
-//        List<Comment> comments = commentRepository.getAllByID(1L);
-//        for (Comment c : comments){
-//            log.info("=========================================");
-//            log.info(c.getBoard().toString());
-//            log.info("=========================================");
-//        }
-
         return commentRepository.findAll();
     }
 
     public Comment getComment(Long id) {
         return commentRepository.findById(id)
                 .orElseThrow(() -> new BusinessException(ErrorCode.BOARD_NOT_EXIST));
+    }
+
+    public Comment insertComment(Comment comment) {
+
+//        log.info(comment.getContent().toString());
+//        log.info(comment.getBoard().getId());
+        return commentRepository.save(comment);
+    }
+
+    public void deleteComment(Long id) {
+        commentRepository.deleteById(id);
+    }
+
+    public Comment updateComment(Comment comment) {
+        Optional<Comment> c = commentRepository.findById(comment.getId());
+        log.info(c.get().getContent());
+        return c.map(
+                x -> {
+                    x.setContent(comment.getContent());
+                    return commentRepository.save(x);
+                }
+        ).orElseThrow(() -> new BusinessException(ErrorCode.BOARD_NOT_EXIST));
     }
 }
