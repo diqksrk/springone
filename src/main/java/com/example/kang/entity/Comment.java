@@ -21,8 +21,8 @@ public class Comment {
     @Column
     private String content;
 
-    @ManyToOne()
-    @JoinColumn(name = "user_id")
+    @ManyToOne
+    @JoinColumn(name = "board_id", nullable = false)
     @JsonIgnore
     private Board board;
 

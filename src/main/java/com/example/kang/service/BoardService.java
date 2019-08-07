@@ -21,17 +21,17 @@ import java.util.Optional;
 public class BoardService {
 
     private final BoardRepository boardRepository;
-    private final CommentRepository commentRepository;
+    private final CommentService commentService;
 
     @Transactional
     public Board getBoard(Long id) {
         Board board = boardRepository.findById(id)
                 .orElseThrow(() -> new BusinessException(ErrorCode.BOARD_NOT_EXIST));
-//        Optional<Comment> optionalComment = commentRepository.findById(1L);
+//        Comment comment = commentService.getComment(1L);
 //        List<Comment> commentList = new ArrayList<>();
-//        commentList.add(optionalComment.get());
-
-        board.setCommentList(commentRepository.findAll());
+//        commentList.add(comment);
+//
+//        board.setCommentList(commentList);
         return board;
     }
 

@@ -20,14 +20,15 @@ public class CommentService {
     private final CommentRepository commentRepository;
 
     public List<Comment> selectCommentList() {
-        Comment comment = new Comment();
-        Board board = new Board();
-        comment.setBoard(board);
+//        Comment comment = new Comment();
+//        Board board = new Board();
+//        comment.setBoard(board);
 
-        List<Comment> commentList=commentRepository.findAll();
-//        for (Comment c : commentList){
+//        List<Comment> commentList=commentRepository.findAll();
+//        List<Comment> comments = commentRepository.getAllByID(1L);
+//        for (Comment c : comments){
 //            log.info("=========================================");
-//            log.info(c.toString()+" "+c.getBoard().toString());
+//            log.info(c.getBoard().toString());
 //            log.info("=========================================");
 //        }
 

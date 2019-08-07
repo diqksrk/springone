@@ -22,10 +22,6 @@ public class Board {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; //테이블 많아졌을때 대비
 
-    @Column
-    @NotNull
-    private String userId;
-
     @Column(length = 200, nullable = false)
     @NotNull
     private String title;
